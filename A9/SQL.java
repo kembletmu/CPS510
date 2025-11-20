@@ -1,6 +1,6 @@
 public class SQL {
 
-    // ---------- DROP TABLES (reverse FK order) ----------
+    // DROP TABLES
     public static final String[] DROP_TABLES = {
         "DROP TABLE IF EXISTS RoomAssignment;",
         "DROP TABLE IF EXISTS ServiceRequests;",
@@ -15,7 +15,7 @@ public class SQL {
         "DROP TABLE IF EXISTS ProvinceCountry;"
     };
 
-    // ---------- CREATE TABLES ----------
+    // CREATE TABLES
     public static final String[] CREATE_TABLES = {
 
         // ProvinceCountry
@@ -128,13 +128,13 @@ public class SQL {
         ");"
     };
 
-    // ---------- POPULATE WITH DUMMY DATA ----------
+    // POPULATE WITH DUMMY DATA
     public static final String[] POPULATE_DATA = {
 
-        // ProvinceCountry (from your data: all Ontario, Canada)
+        // ProvinceCountry
         "INSERT INTO ProvinceCountry VALUES ('Ontario', 'Canada');",
 
-        // PostalAddress (unique postal_code → city, province)
+        // PostalAddress
         "INSERT INTO PostalAddress VALUES ('A1B 2C3', 'Toronto',  'Ontario');",
         "INSERT INTO PostalAddress VALUES ('M2N 8L1', 'North York','Ontario');",
         "INSERT INTO PostalAddress VALUES ('M2N 8L2', 'Toronto',   'Ontario');",
@@ -144,7 +144,7 @@ public class SQL {
         "INSERT INTO PostalAddress VALUES ('M5C 1W5', 'Toronto',   'Ontario');",
         "INSERT INTO PostalAddress VALUES ('M5C 1W6', 'Toronto',   'Ontario');",
 
-        // Guests (same people, now with postal_code FK only)
+        // Guests
         "INSERT INTO Guests VALUES (" +
         "  1," +
         "  'Jack Nguyen'," +
@@ -205,7 +205,7 @@ public class SQL {
         "  'M2N 8L5'" +
         ");",
 
-        // Staff (same, with normalized postal_code)
+        // Staff
         "INSERT INTO Staff VALUES (" +
         "  1," +
         "  'Kemble Xie'," +
@@ -245,18 +245,18 @@ public class SQL {
         "  'M5C 1W6'" +
         ");",
 
-        // RoomType (BCNF split from Rooms)
+        // RoomType 
         "INSERT INTO RoomType VALUES ('Double', 2, 100.00);",
         "INSERT INTO RoomType VALUES ('Single', 1, 80.00);",
         "INSERT INTO RoomType VALUES ('Suite',  4, 250.00);",
 
-        // Rooms (now only reference room_type)
+        // Rooms 
         "INSERT INTO Rooms VALUES (101, 'Double', 'Vacant',  'Pending');",
         "INSERT INTO Rooms VALUES (102, 'Single', 'Vacant',  'Pending');",
         "INSERT INTO Rooms VALUES (103, 'Suite',  'Occupied','Clean');",
         "INSERT INTO Rooms VALUES (104, 'Double', 'Vacant',  'Clean');",
 
-        // Reservations (dates as TEXT in SQLite)
+        // Reservations
         "INSERT INTO Reservations VALUES (" +
         "  1, 101, 1," +
         "  '2025-09-18 23:17:00'," +
@@ -295,12 +295,12 @@ public class SQL {
         "INSERT INTO Invoices VALUES (3, 3, 750.0,  'Pending', 'Debit');",
         "INSERT INTO Invoices VALUES (4, 4, 120.0,  'Paid',    'Cash');",
 
-        // ServiceTypes (BCNF split from ServiceRequests)
+        // ServiceTypes
         "INSERT INTO ServiceTypes VALUES ('Room Cleaning', 20.0);",
         "INSERT INTO ServiceTypes VALUES ('Room Service', 40.0);",
         "INSERT INTO ServiceTypes VALUES ('Massage',      30.0);",
 
-        // ServiceRequests (now reference service_type only)
+        // ServiceRequests 
         "INSERT INTO ServiceRequests VALUES (" +
         "  1, 1, 'Room Cleaning'," +
         "  '2025-09-26 15:11:03'," +

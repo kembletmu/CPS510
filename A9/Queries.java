@@ -8,7 +8,7 @@ public class Queries {
 
     public static void searchGuestByName(String name) {
         if (name == null) return;
-        // very basic escaping for single quotes
+        // basic escaping for single quotes
         String safe = name.replace("'", "''");
         String sql = "SELECT guest_id, guest_name, guest_email, phone_number " +
                      "FROM Guests " +
